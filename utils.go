@@ -65,3 +65,19 @@ func getInputIntFieldsAsRows(taskInput string) [][]int {
 
 	return rows
 }
+
+func getInputFieldsAsStrings(taskInput string) []string {
+	var split = strings.Split(taskInput, "\n")
+	var rows = make([]string, 0, len(split))
+
+	for i := 0; i < len(split); i += 1 {
+		var row = strings.Fields(split[i])
+		if len(row) == 0 {
+			continue
+		}
+
+		rows = append(rows, row[0])
+	}
+
+	return rows
+}

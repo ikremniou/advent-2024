@@ -34,3 +34,13 @@ func TestAdvent2024Day3(t *testing.T) {
 		advent2024.AdventDay3Part2()
 	})
 }
+
+func TestAdvent204Day4(t *testing.T) {
+	t.Run("Advent 2024 Day 4 part 1", func(t *testing.T) {
+		advent2024.AdventDay4Part1()
+	})
+
+	t.Run("Advent 2024 Day 4 part 2", func(t *testing.T) {
+		advent2024.AdventDay4Part2()
+	})
+}
