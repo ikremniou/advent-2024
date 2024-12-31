@@ -81,3 +81,37 @@ func getInputFieldsAsStrings(taskInput string) []string {
 
 	return rows
 }
+
+func getPrinterData(taskInput string) (ordering map[int][]int, pages [][]int) {
+	ordering = make(map[int][]int)
+	pages = make([][]int, 0)
+
+	taskInput = strings.Trim(taskInput, "\n\t")
+	var fields = strings.Fields(taskInput)
+
+	var mode = "ordering"
+	for i := 0; i < len(fields); i += 1 {
+		if fields[i] == "" {
+			mode = "pages"
+
+			continue
+		}
+
+		if mode == "ordering" {
+			var orderingFields = strings.Split(fields[i], "|")
+			var left, _ = strconv.Atoi(orderingFields[0])
+			var right, _ = strconv.Atoi(orderingFields[1])
+
+			ordering[left] = append(ordering[left], right)
+		} else {
+			var orderingPage = make([]int, 0)
+			var orderingRawValues = strings.Split(fields[i], ",")
+			for j := 0; j < len(orderingRawValues); j += 1 {
+				var value, _ = strconv.Atoi(orderingRawValues[j])
+				orderingPage = append(orderingPage, value)
+			}
+
+			pages = append(pages, orderingPage)
+		}
+	}
+}
